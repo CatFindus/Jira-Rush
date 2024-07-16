@@ -44,3 +44,6 @@ Task 4:Переделать тесты так, чтоб во время тест
 Тестирование переделано на in memory DB H2. Отредактирован application-test.yaml, подключена база H2.
 Создан changelog-test.sql с откорректированными для H2 скриптами. Отредактирован data.sql для возможности использования с DB H2.
 Отредактирован класс AbstractControllerTest для использования с новым файлом changelog-test.sql.
+
+Task 6:Сделать рефакторинг метода com.javarush.jira.bugtracking.attachment.FileUtil#upload чтоб он использовал современный подход для работы с файловой системмой.
+Отрефакторен метод upload в классе FileUtil. Метод переделан на nio;
