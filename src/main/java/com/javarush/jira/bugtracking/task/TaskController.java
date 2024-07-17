@@ -145,6 +145,13 @@ public class TaskController {
         activityService.update(activityTo, id);
     }
 
+    @PostMapping("/{id}/tag")
+    @ResponseStatus(HttpStatus.CREATED)
+    public ResponseEntity<Void> addTagToTask(@PathVariable("id") long id, @RequestBody String tag) {
+        taskService.addTagToTask(id, tag);
+        return ResponseEntity.noContent().build();
+    }
+
     @DeleteMapping("/activities/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable long id) {
