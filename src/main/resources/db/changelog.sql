@@ -330,5 +330,6 @@ values ('todo', 'ToDo', 3, 'in_progress,canceled|'),
 drop index UK_USER_BELONG;
 create unique index UK_USER_BELONG on USER_BELONG (OBJECT_ID, OBJECT_TYPE, USER_ID, USER_TYPE_CODE) where ENDPOINT is null;
 
---changeset apuchinec:change_val_contact
+--changeset apuchinec:change_VAL_CONTACT
+
 alter table CONTACT RENAME VALUE TO VAL;
