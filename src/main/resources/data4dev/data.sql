@@ -49,7 +49,7 @@ insert into PROFILE (ID, LAST_FAILED_LOGIN, LAST_LOGIN, MAIL_NOTIFICATIONS)
 values (1, null, null, 49),
        (2, null, null, 14);
 
-insert into CONTACT (ID, CODE, VALUE)
+insert into CONTACT (ID, CODE, VAL)
 values (1, 'skype', 'userSkype'),
        (1, 'mobile', '+01234567890'),
        (1, 'website', 'user.com'),
@@ -325,3 +325,9 @@ values (6, 1, '2023-05-15 09:05:10', null, 'Data', null, 3, 'epic', 'in_progress
        (5, 118, '2023-05-16 11:10:10', null, 'UI tab of tasks', null, null, null, null, 'high'),
        (11, 118, '2023-05-16 12:30:10', null, 'UI tab of tasks', null, 2, null, null, null);
 
+insert into public.activity (author_id, task_id, updated, comment, title, description, estimate, type_code, status_code, priority_code)
+values  (7, 1, current_timestamp + interval '1 hour', null, null, null, null, null, 'ready_for_review', null),
+        (7, 1, current_timestamp + interval '2 hour', null, null, null, null, null, 'review', null),
+        (7, 1, current_timestamp + interval '3 hour', null, null, null, null, null, 'ready_for_test', null),
+        (7, 1, current_timestamp + interval '4 hour', null, null, null, null, null, 'test', null),
+        (7, 1, current_timestamp + interval '5 hour', null, null, null, null, null, 'done', null);

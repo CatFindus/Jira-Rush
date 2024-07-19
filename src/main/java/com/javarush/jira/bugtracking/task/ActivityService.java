@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static com.javarush.jira.bugtracking.task.TaskUtil.getLatestValue;
@@ -72,5 +74,30 @@ public class ActivityService {
                 task.setTypeCode(latestType);
             }
         }
+    }
+
+    public Duration getDurationInProgress(Task task) {
+        LocalDateTime inProgress = null;
+        LocalDateTime readyForReview = null;
+        List<Activity> activities = handler.getRepository().findAllByTaskIdOrderByUpdatedDesc(task.id());
+        for (Activity activity : activities) {
+            if ("in_progress".equals(activity.getStatusCode())) inProgress=activity.getUpdated();
+            if ("ready_for_review".equals(activity.getStatusCode())) readyForReview=activity.getUpdated();
+        }
+        if (inProgress==null||readyForReview==null) return Duration.ZERO;
+        else return  Duration.between(inProgress, readyForReview);
+
+    }
+
+    public Duration getDurationInTesting(Task task) {
+        LocalDateTime done = null;
+        LocalDateTime readyForReview = null;
+        List<Activity> activities = handler.getRepository().findAllByTaskIdOrderByUpdatedDesc(task.id());
+        for (Activity activity : activities) {
+            if ("done".equals(activity.getStatusCode())) done=activity.getUpdated();
+            if ("ready_for_review".equals(activity.getStatusCode())) readyForReview=activity.getUpdated();
+        }
+        if (done==null||readyForReview==null) return Duration.ZERO;
+        else return  Duration.between(readyForReview, done);
     }
 }
