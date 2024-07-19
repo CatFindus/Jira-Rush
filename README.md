@@ -60,3 +60,9 @@ Task 8: Добавить подсчет времени сколько задач
 
 Task 9: Написать Dockerfile для основного сервера
 Создан dockerfile для основного сервера
+
+Task 10: Написать docker-compose файл для запуска контейнера сервера вместе с БД и nginx. Для nginx используй конфиг-файл config/nginx.conf. При необходимости файл конфига можно редактировать.
+Задание выполнено не совсем полностью. Отредактирован nginx.conf. Создан docker-compose файл. 
+Все запускается и работает, но в логах nginx сыпятся ошибки например:
+[error] 29#29: *16 open() "/opt/jirarush/resources/static/bootstrap/css/bootstrap-select.min.css" failed (2: No such file or directory), client: 192.168.224.1, server: , request: "GET /static/bootstrap/css/bootstrap-select.min.css HTTP/1.1", host: "localhost", referrer: "http://localhost/ui/profile"
+Он почему то добавляет к имени файла bootstrap-select.min.css слово select. Почему так не удалось разобраться.
